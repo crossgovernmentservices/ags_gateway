@@ -104,3 +104,9 @@ environment.sh
 
 # JetBrains
 .idea
+
+# Mac OS
+.DS_STORE
+
+# screenshots
+/screenshots
