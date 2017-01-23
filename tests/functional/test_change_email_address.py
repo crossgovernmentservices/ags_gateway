@@ -18,7 +18,7 @@ class When_on_change_email(object):
         assert browser.find_by_css('#email_address').value == q_email
 
     @pytest.mark.parametrize("email_address,department", email_depts)
-    def it_goes_to_department_confirm_when_continue_clicked_after_email_changed(
+    def it_goes_to_dept_confirm_when_continue_clicked_after_email_changed(
             self, live_server, browser, email_address, department):
 
         browser.visit(url_for('main.change_email_address',
