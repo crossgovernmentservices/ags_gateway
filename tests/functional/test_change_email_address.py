@@ -1,28 +1,27 @@
 import pytest
 from flask import url_for
 
-q_email = 'some.one@digital.cabinet-office.gov.uk'
-
-email_depts = [('some.one@cabinetoffice.gov.uk',
-                'Cabinet Office')]
+supplied_email = 'some.one@digital.cabinet-office.gov.uk'
 
 
-class When_on_change_email(object):
+class When_on_change_email_address_page(object):
 
-    def it_shows_the_email_address_query_string_in_the_textbox(
+    def it_shows_the_email_address_supplied_in_the_textbox(
             self, live_server, browser):
 
-        browser.visit(url_for('main.change_email_address',
-                              email_address=q_email, _external=True))
+        browser.visit(url_for(
+            'main.change_email_address', email_address=supplied_email, _external=True))
 
-        assert browser.find_by_css('#email_address').value == q_email
+        assert browser.find_by_css('#email_address').value == supplied_email
 
-    @pytest.mark.parametrize("email_address,department", email_depts)
-    def it_goes_to_dept_confirm_when_continue_clicked_after_email_changed(
-            self, live_server, browser, email_address, department):
+    def it_goes_to_dept_confirm_when_continue_clicked(
+            self, live_server, browser):
 
-        browser.visit(url_for('main.change_email_address',
-                              email_address=q_email, _external=True))
+        email_address = 'some.one@cabinetoffice.gov.uk'
+        department = 'Cabinet Office'
+
+        browser.visit(url_for(
+            'main.change_email_address', email_address=supplied_email, _external=True))
 
         browser.fill('email_address', email_address)
 
