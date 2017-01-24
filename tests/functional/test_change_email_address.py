@@ -1,4 +1,3 @@
-import pytest
 from flask import url_for
 
 supplied_email = 'some.one@digital.cabinet-office.gov.uk'
@@ -10,7 +9,9 @@ class When_on_change_email_address_page(object):
             self, live_server, browser):
 
         browser.visit(url_for(
-            'main.change_email_address', email_address=supplied_email, _external=True))
+            'main.change_email_address',
+            email_address=supplied_email,
+            _external=True))
 
         assert browser.find_by_css('#email_address').value == supplied_email
 
@@ -21,7 +22,9 @@ class When_on_change_email_address_page(object):
         department = 'Cabinet Office'
 
         browser.visit(url_for(
-            'main.change_email_address', email_address=supplied_email, _external=True))
+            'main.change_email_address',
+            email_address=supplied_email,
+            _external=True))
 
         browser.fill('email_address', email_address)
 
