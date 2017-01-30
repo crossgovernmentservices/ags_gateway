@@ -1,9 +1,7 @@
 import pytest
-
 from responses import RequestsMock
 
 from app.factory import create_app
-
 from tests.oidc_testbed import MockOIDCProvider
 
 
@@ -47,7 +45,7 @@ def app(provider, issuer):
             'issuer': 'https://localhost:5000',
             'subject_id_hash_salt': 'salt'
         },
-        'META_REFRESH_DELAY': 1,
+        'META_REFRESH_DELAY': 1
     })
 
     ctx = app.app_context()
