@@ -97,10 +97,10 @@ def match_idp_email(idp, email_address):
 
 
 def dept_from_idp_name(idp_name):
-    idp = [idp['name'] for idp in idp_profiles if idp_name == idp['idp_name']]
-    if idp:
+    dept = [profile['name']
+            for profile in idp_profiles if idp_name == profile['idp_name']]
+    if dept:
         return ' or '.join(idp)
-    return None
 
 
 def idp_for_dept(dept):
@@ -149,8 +149,8 @@ def authentication_request():
 
     elif request.cookies.get('gateway_idp'):
         session['suggested_idp'] = request.cookies.get('gateway_idp')
-        department = dept_from_idp_name(session['suggested_idp'])
-        session['department_name'] = department
+        session['department_name'] = dept_from_idp_name(
+            session['suggested_idp'])
         return redirect(url_for('.confirm_dept'))
 
     return redirect(url_for('.request_email_address'))
