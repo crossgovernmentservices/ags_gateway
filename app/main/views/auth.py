@@ -100,7 +100,7 @@ def dept_from_idp_name(idp_name):
     dept = [profile['name']
             for profile in idp_profiles if idp_name == profile['idp_name']]
     if dept:
-        return ' or '.join(idp)
+        return ' or '.join(dept)
 
 
 def idp_for_dept(dept):
