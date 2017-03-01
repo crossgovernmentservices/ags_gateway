@@ -14,7 +14,9 @@ def request(url, method):
 class When_on_to_service_interstitial(object):
 
     @pytest.fixture(autouse=True)
-    def setup_page(self, client):
+    def setup_page(self, client, app):
+        self.config_countdown = app.config['META_REFRESH_DELAY']
+
         self.service_page_redirect = 'to-service-page'
 
         with client.session_transaction() as session:
@@ -34,4 +36,4 @@ class When_on_to_service_interstitial(object):
 
         countdown_int = int(re.match(r'\d+', countdown_text).group())
 
-        assert countdown_int == config.get('META_REFRESH_DELAY')
+        assert countdown_int == self.config_countdown
