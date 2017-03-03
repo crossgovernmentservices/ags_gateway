@@ -97,10 +97,15 @@ def match_idp_email(idp, email_address):
 
 
 def dept_from_idp_name(idp_name):
-    dept = [profile['name']
-            for profile in idp_profiles if idp_name == profile['idp_name']]
-    if dept:
-        return ' or '.join(dept)
+    depts = None
+    for profile in idp_profiles:
+        if idp_name == profile['idp_name']:
+            if depts is None:
+                depts = []
+            depts.append(profile['name'])
+
+    if depts:
+        return ' or '.join(depts)
 
 
 def idp_for_dept(dept):
